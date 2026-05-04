@@ -1,0 +1,81 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Avocat-Link Luxury Legal Color Palette */
+:root {
+  /* Core colors from spec */
+  --camel-coat: #C6B39A;
+  --boho: #7B694E;
+  --rubine: #6D3A3C;
+  --tamarind: #361319;
+  --italian-roast: #280B0F;
+
+  /* Dark theme as primary */
+  --background: #280B0F;
+  --foreground: #E8E0D8;
+  --card: #361319;
+  --card-foreground: #E8E0D8;
+  --popover: #361319;
+  --popover-foreground: #E8E0D8;
+  --primary: #C6B39A;
+  --primary-foreground: #280B0F;
+  --secondary: #7B694E;
+  --secondary-foreground: #E8E0D8;
+  --muted: #3D1E23;
+  --muted-foreground: #A89A8C;
+  --accent: #6D3A3C;
+  --accent-foreground: #E8E0D8;
+  --destructive: #8B3A3A;
+  --destructive-foreground: #E8E0D8;
+  --border: #4A2529;
+  --input: #4A2529;
+  --ring: #C6B39A;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Custom luxury colors */
+  --color-camel: #C6B39A;
+  --color-boho: #7B694E;
+  --color-rubine: #6D3A3C;
+  --color-tamarind: #361319;
+  --color-italian-roast: #280B0F;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
