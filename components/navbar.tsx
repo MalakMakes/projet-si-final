@@ -10,11 +10,24 @@ import { logout } from '@/app/login/actions'
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/dossiers', label: 'Dossiers' },
-  { href: '/consultations', label: 'Consultations' },
+  { href: '/reservations', label: 'Réservations' },
+  { href: '/dashboard/appointments', label: 'Rendez-vous' },
 ]
 
-export function Navbar() {
+export function Navbar({ profile }: { profile?: { nom_complet: string, role: string } | null }) {
   const pathname = usePathname()
+
+  const displayName = profile?.nom_complet || 'Utilisateur'
+  const displayRole = profile?.role 
+    ? profile.role.charAt(0).toUpperCase() + profile.role.slice(1) 
+    : 'Chargement...'
+
+  const initials = displayName
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .substring(0, 2)
+    .toUpperCase()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-italian-roast/95 backdrop-blur supports-[backdrop-filter]:bg-italian-roast/80">
@@ -49,16 +62,21 @@ export function Navbar() {
 
         {/* User Profile */}
         <div className="flex items-center gap-4">
-          <div className="hidden sm:flex flex-col items-end">
-            <span className="text-sm font-medium text-foreground">Me. Dupont</span>
-            <span className="text-xs text-muted-foreground">Avocat associé</span>
-          </div>
-          <Avatar className="h-10 w-10 border-2 border-camel/30">
-            <AvatarImage src="/avatar.jpg" alt="Me. Dupont" />
-            <AvatarFallback className="bg-camel/20 text-camel font-serif text-sm">
-              MD
-            </AvatarFallback>
-          </Avatar>
+          <Link 
+            href="/profile" 
+            className="hidden sm:flex flex-col items-end hover:opacity-80 transition-opacity"
+          >
+            <span className="text-sm font-medium text-foreground">{displayName}</span>
+            <span className="text-xs text-muted-foreground">{displayRole}</span>
+          </Link>
+          <Link href="/profile" className="hover:ring-2 hover:ring-camel/20 rounded-full transition-all">
+            <Avatar className="h-10 w-10 border-2 border-camel/30">
+              <AvatarImage src="" alt={displayName} />
+              <AvatarFallback className="bg-camel/20 text-camel font-serif text-sm">
+                {initials}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
           <form action={logout}>
             <button
               type="submit"
