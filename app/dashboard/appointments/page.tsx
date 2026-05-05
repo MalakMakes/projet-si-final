@@ -14,7 +14,9 @@ import { toast } from 'sonner'
 import { ConfirmModal } from '@/components/confirm-modal'
 import { Trash2 } from 'lucide-react'
 
-export default function AppointmentsPage() {
+import { Suspense } from 'react'
+
+function AppointmentsContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const caseId = searchParams.get('caseId')
@@ -223,5 +225,17 @@ export default function AppointmentsPage() {
         />
       </main>
     </div>
+  )
+}
+
+export default function AppointmentsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <Loader2 className="h-8 w-8 animate-spin text-camel" />
+      </div>
+    }>
+      <AppointmentsContent />
+    </Suspense>
   )
 }
