@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Scale } from 'lucide-react'
+import { Scale, LogOut } from 'lucide-react'
+import { logout } from '@/app/login/actions'
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard' },
@@ -58,6 +59,15 @@ export function Navbar() {
               MD
             </AvatarFallback>
           </Avatar>
+          <form action={logout}>
+            <button
+              type="submit"
+              className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors ml-2"
+              title="Log out"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          </form>
         </div>
       </nav>
     </header>
